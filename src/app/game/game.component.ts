@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IGame } from '../game';
-import { SteamGameDetails } from '../steamgamedetails';
+import { ISteamGameDetails } from '../steamgamedetails';
+import { ISteamGameNews } from '../steamgamenews';
 
 @Component({
   selector: 'app-game',
@@ -17,6 +18,8 @@ export class GameComponent implements OnInit {
     steamId: 0
   };
 
+  gameNews: ISteamGameNews[] = [];
+
   screenshotUrl: string = '';
 
   constructor(
@@ -30,7 +33,8 @@ export class GameComponent implements OnInit {
       this.http.get<IGame>(`/api/v1/games/?id=${params.get('id')}`).subscribe(data => {
         this.game = data;
 
-        this.http.get<SteamGameDetails>(`/api/v1/games/steam/details/${this.game.steamId}`).subscribe(steamDetails => this.screenshotUrl = steamDetails.screenshotUrl);
+        this.http.get<ISteamGameDetails>(`/api/v1/games/steam/details/${this.game.steamId}`).subscribe(steamDetails => this.screenshotUrl = steamDetails.screenshotUrl);
+        this.http.get<ISteamGameNews[]>(`/api/v1/games/steam/news/${this.game.steamId}`).subscribe(steamNews => this.gameNews = steamNews);
       });
     })
   }

@@ -1,3 +1,3 @@
-export interface SteamGameDetails {
+export interface ISteamGameDetails {
   screenshotUrl: string;
 };
