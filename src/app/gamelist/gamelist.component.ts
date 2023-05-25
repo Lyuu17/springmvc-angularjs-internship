@@ -1,12 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, signal } from '@angular/core';
-
-interface IGame {
-  id: number;
-  title: string;
-  description: string;
-  steamId: number;
-}
+import { IGame } from '../game';
 
 @Component({
   selector: 'app-gamelist',

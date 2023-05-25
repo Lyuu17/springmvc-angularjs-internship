@@ -30,7 +30,9 @@
                 class="border-b transition duration-300 ease-in-out hover:bg-neutral-300"
                 *ngFor="let game of games()">
                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{ game.id }}</td>
-                <td class="whitespace-nowrap px-6 py-4 text-center">{{ game.title }}</td>
+                <td class="whitespace-nowrap px-6 py-4 text-center">
+                  <a routerLink="game/{{ game.id }}">{{ game.title }}</a>
+                </td>
                 <td class="whitespace-nowrap px-6 py-4 text-right">
                   <button class="bg-green-600 hover:bg-green-800">Edit</button>
                   <button class="bg-red-600 hover:bg-red-800 ml-1">Delete</button>
