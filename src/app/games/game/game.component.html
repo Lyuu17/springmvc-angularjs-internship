@@ -1,33 +1,33 @@
 <div class="m-4">
-  <div class="border">
-    <div class="bg-blue-600 p-2">
+  <div class="border dark:border-gray-700">
+    <div class="bg-blue-800 p-2">
       <h2 class="text-white font-medium">{{ game.title }}</h2>
     </div>
     <div class="flex flex-col">
-      <div class="flex flex-row border-b-2">
+      <div class="flex flex-row border-b-2 dark:border-gray-700">
         <div *ngIf="screenshotUrl != ''" class="flex-col w-1/4 mb-4">
-          <div class="border rounded m-2">
-            <img width="100%" height="100%" class="border rounded" src="{{ screenshotUrl }}" alt="Screenshot"/>
+          <div class="border rounded m-2 dark:border-gray-700">
+            <img width="100%" height="100%" class="border rounded dark:border-gray-700" src="{{ screenshotUrl }}" alt="Screenshot"/>
           </div>
         </div>
     
-        <div class="flex-row w-3/4 mb-2 mt-2 p-3 rounded border-l-2">
+        <div class="flex-row w-3/4 mb-2 mt-2 p-3 rounded border-l-2 dark:border-gray-700">
           <div class="flex-col">
-            <p>{{ game.description }}</p>
+            <p class="dark:text-white">{{ game.description }}</p>
           </div>
         </div>
       </div>
     </div>
 
     <div class="m-2">
-      <h4 class="text-center m-2 font-medium">News</h4>
+      <h4 class="text-center m-2 font-medium dark:text-white">News</h4>
       <div>
-        <div *ngFor="let news of gameNews" class="mb-3 border rounded-t-md rounded-b-md">
-          <div class="rounded-t-md bg-blue-600 p-2">
+        <div *ngFor="let news of gameNews" class="mb-3 border rounded-t-md rounded-b-md dark:border-gray-700">
+          <div class="rounded-t-md bg-blue-800 p-2">
             <h4><a class="text-decoration-none text-white" href="{{ news.url }}">{{ news.title }}</a></h4>
           </div>
-          <div class="m-2 font-medium">{{ news.author }}</div>
-          <div class="m-2">{{ news.contents }}</div>
+          <div class="m-2 font-medium dark:text-white">{{ news.author }}</div>
+          <div class="m-2 dark:text-white">{{ news.contents }}</div>
         </div>
       </div>
     </div>
