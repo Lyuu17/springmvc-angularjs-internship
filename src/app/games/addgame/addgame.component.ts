@@ -25,6 +25,6 @@ export class AddgameComponent {
       title: this.form.get('title')?.value,
       description: this.form.get('description')?.value,
       steamId: this.form.get('steamId')?.value
-    }).subscribe(() => this.router.navigateByUrl(`/`));
+    }, { observe: 'response' }).subscribe((response) => this.router.navigateByUrl(response.headers.get('Location') || ''));
   }
 }
