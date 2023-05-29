@@ -12,6 +12,7 @@ export class GamelistComponent implements OnInit {
   games = signal<IGame[]>([]);
   pageIsLast = signal<boolean>(false);
   pageIsFirst = signal<boolean>(false);
+  pageTotal = signal<number[]>([]);
   pageNum = 0;
 
   @Input() searchInput = "";
@@ -26,6 +27,7 @@ export class GamelistComponent implements OnInit {
     this.http.get<IPaginatedResult<IGame>>(`/api/v1/games/?page=${this.pageNum}&title=${this.searchInput}`).subscribe(paginatedResponse => {
       this.pageIsFirst.set(paginatedResponse.first);
       this.pageIsLast.set(paginatedResponse.last);
+      this.pageTotal.set([...Array(paginatedResponse.totalPages).keys()]);
 
       this.games.set(paginatedResponse.content);
     });
