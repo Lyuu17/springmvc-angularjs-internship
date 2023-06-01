@@ -4,5 +4,10 @@
     <a routerLink="/" class="flex items-center">
       <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">springmvc-angularjs</span>
     </a>
+
+    <div class="flex items-center">
+      <a *ngIf="!isAuth()" routerLink="/auth/login" class="text-sm text-blue-600 dark:text-blue-500 hover:underline">Login</a>
+      <a *ngIf="isAuth()" routerLink="/auth/logout" class="text-sm text-blue-600 dark:text-blue-500 hover:underline">Logout</a>
+    </div>
   </div>
 </nav>
