@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { AuthenticateService } from '../services/authenticate.service';
+import { Component, signal } from '@angular/core';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,10 +7,10 @@ import { AuthenticateService } from '../services/authenticate.service';
 })
 export class NavbarComponent {
 
-  constructor(private readonly authenticateService: AuthenticateService) { }
+  isAuth = signal<boolean>(false);
 
-  isAuth() {
-    return this.authenticateService.isAuth();
+  constructor(private readonly authService: AuthenticationService) {
+    this.authService.getAuthStatus().subscribe((value) => this.isAuth.set(value));
   }
 
 }

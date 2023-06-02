@@ -1,26 +1,18 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { repeat, retry } from 'rxjs';
+import { AuthenticationStore } from './authentication.store';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthenticateService {
+@Injectable()
+export class AuthenticationService {
 
-  private isLoggedIn = false;
+  constructor(
+    private readonly http: HttpClient,
+    private readonly authStore: AuthenticationStore
+  ) { }
 
-  constructor(private readonly http: HttpClient) {
-    this.isLoggedIn = localStorage.getItem('isLoggedIn') == 'true' ? true : false || false;
-  }
-
-  setAuth(status: boolean) {
-    localStorage.setItem('isLoggedIn', `${status}`);
-
-    this.isLoggedIn = status;
-  }
-
-  isAuth() {
-    return this.isLoggedIn;
+  getAuthStatus() {
+    return this.authStore.getAuthStatus();
   }
 
   login(username: string, password: string): Promise<void> {
@@ -34,7 +26,7 @@ export class AuthenticateService {
         )
         .subscribe({
           error: (error) => {
-            this.setAuth(error.status == 200);
+            this.authStore.setAuthStatus(error.status == 200);
 
             error.status == 200 ? resolve() : reject()
           }
@@ -47,7 +39,7 @@ export class AuthenticateService {
       this.http.post('/api/logout', { }, { withCredentials: true })
         .subscribe({
           error: (error) => {
-            this.setAuth(!(error.status == 200));
+            this.authStore.setAuthStatus(!(error.status == 200));
 
             error.status == 200 ? resolve() : reject()
           }
@@ -55,3 +47,4 @@ export class AuthenticateService {
     })
   }
 }
+

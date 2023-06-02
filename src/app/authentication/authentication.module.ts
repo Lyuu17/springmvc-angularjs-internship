@@ -3,7 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSimpleStateModule } from 'ng-simple-state';
 import { AuthenticationRoutingModule } from './authentication-routing.module';
+import { AuthenticationService } from './authentication.service';
+import { AuthenticationStore } from './authentication.store';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 
@@ -18,7 +21,12 @@ import { LogoutComponent } from './logout/logout.component';
     AuthenticationRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgSimpleStateModule
+  ],
+  providers: [
+    AuthenticationService,
+    AuthenticationStore
   ]
 })
 export class AuthenticationModule { }

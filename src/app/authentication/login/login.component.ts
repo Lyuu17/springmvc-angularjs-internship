@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticateService } from 'src/app/services/authenticate.service';
+import { AuthenticationService } from 'src/app/authentication/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent {
 
   constructor(
     private readonly router: Router,
-    private readonly authenticateService: AuthenticateService
+    private readonly authenticateService: AuthenticationService
   ) { }
 
   submit(): void {
